@@ -22,7 +22,7 @@ composer-i:	##- Composer install
 	@ docker exec -it $(CONTAINER) composer install
 
 preset:		##- preset laravel
-	@ docker exec -it $(CONTAINER) cp .env.example .env && chmod -R 777 storage && chmod -R 777 bootstrap
+	@ docker exec -it $(CONTAINER) cp .env.example .env && chmod -R 777 storage && chmod -R 777 bootstrap && php artisan migrate:refresh --seed
 
 ##-
 ##-		-- QA Task Runners --
