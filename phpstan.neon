@@ -1,0 +1,34 @@
+includes:
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-doctrine/extension.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-doctrine/rules.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/pepakriz/phpstan-exception-rules/extension.neon
+    
+parameters:
+    level: max
+    paths:
+        - app/
+        - routes/
+    excludePaths:
+        - app/Exceptions/Handler.php
+        - app/Http/Kernel.php
+        - app/Http/Middleware/Authenticate.php
+        - app/Http/Middleware/EncryptCookies.php
+        - app/Http/Middleware/PreventRequestsDuringMaintenance.php
+        - app/Http/Middleware/RedirectIfAuthenticated.php
+        - app/Http/Middleware/TrimStrings.php
+        - app/Http/Middleware/TrustProxies.php
+        - app/Http/Middleware/VerifyCsrfToken.php
+        - app/Providers/AppServiceProvider.php
+        - app/Providers/AuthServiceProvider.php
+        - app/Providers/EventServiceProvider.php
+        - app/Providers/RouteServiceProvider.php
+        - app/Providers/BroadcastServiceProvider.php
+        - routes/console.php
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    inferPrivatePropertyTypeFromConstructor: true
