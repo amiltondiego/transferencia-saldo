@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', function () {
+    /** @var ResponseFactory $response */
+    $response = response();
+
+    return $response->json();
+})->name('login');
