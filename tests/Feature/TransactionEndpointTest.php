@@ -33,6 +33,25 @@ class TransactionEndpointTest extends TestCase
         $response->assertStatus(JsonResponse::HTTP_FOUND);
     }
 
+    public function testTransactionValidateFail()
+    {
+        $this->mockHTTP();
+
+        $this->seed();
+
+        Sanctum::actingAs(
+            User::where('email', 'user-comum@gmail.com')->first(),
+            ['*']
+        );
+
+        $response = $this->post('/api/transaction', [
+            'payee' => 'not-found@gmail.com',
+        ]);
+
+        $response->assertStatus(JsonResponse::HTTP_BAD_REQUEST);
+        $response->assertJsonStructure(['value']);
+    }
+
     public function testTransactionNotFoundPayee()
     {
         $this->mockHTTP();

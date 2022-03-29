@@ -1,21 +1,26 @@
-web:
-  build: .
-  container_name: php-web
-  volumes:
-    - .:/app
-  ports:
-    - 80:80
-  expose:
-    - 9000
-  links:
-    - mysql
-mysql:
-  image: mysql
-  container_name: mysql
-  ports:
-    - "3307:3306"
-  volumes:
-    - mysql:/var/lib/mysql/
-  environment:
-    MYSQL_DATABASE: 'banco_teste'
-    MYSQL_ROOT_PASSWORD: 'teste' 
+services:
+  web:
+    build: .
+    container_name: php-web
+    volumes:
+      - .:/app
+    ports:
+      - 80:80
+    expose:
+      - 9000
+    links:
+      - mysql
+    environment:
+      XDEBUG_CONFIG: 'idekey=VSCODE'
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+        MYSQL_DATABASE: 'banco_teste'
+        MYSQL_ROOT_PASSWORD: 'teste' 
+volumes:
+  mysql:

@@ -28,7 +28,9 @@ preset:		##- preset laravel
 ##-		-- QA Task Runners --
 ##-
 test:		##- Run Tests with PHP Unit
-	@ docker exec -it $(CONTAINER) php -d xdebug.mode=coverage artisan test --debug -vvv
+	@ mkdir -p $(CURDIR)/tmp-phpqa/ && chmod 775 $(CURDIR)/tmp-phpqa/
+	@ mkdir -p $(CURDIR)/tmp-phpqa/coverage && chmod 775 $(CURDIR)/tmp-phpqa/coverage
+	@ docker exec -it $(CONTAINER) php artisan test --debug -vvv
 
 stan:		##- Verify Code with PHPStan
 	@ mkdir -p $(CURDIR)/tmp-phpqa/ && chmod 775 $(CURDIR)/tmp-phpqa/
