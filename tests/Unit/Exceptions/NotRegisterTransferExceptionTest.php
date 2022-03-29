@@ -6,7 +6,7 @@ namespace Tests\Unit\Exceptions;
 
 use App\Exceptions\NotRegisterTransferException;
 use Illuminate\Http\JsonResponse;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 /**
  * @internal
