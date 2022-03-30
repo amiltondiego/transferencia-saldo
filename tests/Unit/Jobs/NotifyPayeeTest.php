@@ -7,7 +7,6 @@ namespace Tests\Unit\Integrations;
 use App\Interfaces\ExternalNotifyInterface;
 use App\Interfaces\UserInterface;
 use App\Jobs\NotifyPayee;
-use Illuminate\Support\Facades\Queue;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -25,11 +24,10 @@ class NotifyPayeeTest extends TestCase
         $externalNotify = $this->mock(ExternalNotifyInterface::class, function (MockInterface $mock) {
             $mock->shouldReceive('consult')->andReturn(true);
         });
-        
+
         $job = new NotifyPayee($user);
 
         $job->handle($externalNotify);
-
     }
 
     public function testHandleFail()
@@ -41,11 +39,9 @@ class NotifyPayeeTest extends TestCase
         $externalNotify = $this->mock(ExternalNotifyInterface::class, function (MockInterface $mock) {
             $mock->shouldReceive('consult')->andReturn(false);
         });
-        
+
         $job = new NotifyPayee($user);
 
         $job->handle($externalNotify);
-
     }
-
 }

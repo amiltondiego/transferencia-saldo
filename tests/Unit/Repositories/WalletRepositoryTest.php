@@ -8,7 +8,6 @@ use App\Models\UserCommon;
 use App\Models\UserShopkeeper;
 use App\Repositories\WalletRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 /**
@@ -24,11 +23,10 @@ class WalletRepositoryTest extends TestCase
 
         $userCommon = UserCommon::where('email', 'user-comum@gmail.com')->first();
 
-        $repository = new WalletRepository;
+        $repository = new WalletRepository();
 
         $this->assertIsFloat($repository->getBalance($userCommon, 0));
         $this->assertGreaterThanOrEqual(10000.0, $repository->getBalance($userCommon, 0));
-
     }
 
     public function testRegisterTransferSuccess()
@@ -38,10 +36,8 @@ class WalletRepositoryTest extends TestCase
         $userCommon = UserCommon::where('email', 'user-comum@gmail.com')->first();
         $userShopkeeper = UserShopkeeper::where('email', 'lojista@gmail.com')->first();
 
-        $repository = new WalletRepository;
+        $repository = new WalletRepository();
 
         $this->assertTrue($repository->registerTransfer($userCommon, $userShopkeeper, 100));
-
     }
-
 }

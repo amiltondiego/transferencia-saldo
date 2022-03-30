@@ -18,5 +18,4 @@ class WalletTypeTest extends TestCase
         $this->assertSame(2, WalletType::success());
         $this->assertSame(3, WalletType::fail());
     }
-
 }

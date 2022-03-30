@@ -17,5 +17,4 @@ class UserTypeTest extends TestCase
         $this->assertSame(1, UserType::common());
         $this->assertSame(2, UserType::shopkeeper());
     }
-
 }

@@ -21,30 +21,27 @@ class UserRepositoryTest extends TestCase
 
     public function testFindByEmailReturnNull()
     {
-        $repository = new UserRepository;
+        $repository = new UserRepository();
 
         $this->assertNull($repository->findByEmail('not-found'));
-
     }
 
     public function testFindByEmailReturnUserShopkeeper()
     {
         $this->seed();
 
-        $repository = new UserRepository;
+        $repository = new UserRepository();
 
         $this->assertInstanceOf(UserShopkeeper::class, $repository->findByEmail('lojista@gmail.com'));
-
     }
 
     public function testFindByEmailReturnUserCommon()
     {
         $this->seed();
 
-        $repository = new UserRepository;
+        $repository = new UserRepository();
 
         $this->assertInstanceOf(UserCommon::class, $repository->findByEmail('user-comum@gmail.com'));
-
     }
 
     public function testFindByEmailReturnUserWithTypeNotDefined()
@@ -57,10 +54,8 @@ class UserRepositoryTest extends TestCase
             'password' => Hash::make('password'),
         ]);
 
-        $repository = new UserRepository;
+        $repository = new UserRepository();
 
         $this->assertNull($repository->findByEmail('user-with-type-not-defined@gmail.com'));
-
     }
-
 }
