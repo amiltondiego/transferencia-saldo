@@ -35,7 +35,7 @@ class TransactionService
      * @throws NotAuthorizedTransferException
      * @throws NotRegisterTransferException
      */
-    public function transferBalance(float $value, User $user, string $payee): bool
+    public function transferBalance(float $value, User $user, string $payee): void
     {
         $this->getPayeeByEmail($payee)
             ->getPayerByEmail($user)
@@ -44,8 +44,6 @@ class TransactionService
             ->hasAuthorization()
             ->registerTransfer($value)
             ->notifyPayee();
-
-        return true;
     }
 
     /**
